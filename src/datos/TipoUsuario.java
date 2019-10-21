@@ -3,8 +3,6 @@ package datos;
 public class TipoUsuario {
 	private int idTipoUsuario;
 	private String tipoUsuario;
-	
-	public TipoUsuario() {}
 
 	public TipoUsuario(int idTipoUsuario, String tipoUsuario) {
 		super();
@@ -12,9 +10,8 @@ public class TipoUsuario {
 		this.tipoUsuario = tipoUsuario;
 	}
 
-	@Override
-	public String toString() {
-		return "TipoUsuario [idTipoUsuario=" + idTipoUsuario + ", tipoUsuario=" + tipoUsuario + "]";
+	public TipoUsuario() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getIdTipoUsuario() {
@@ -32,7 +29,5 @@ public class TipoUsuario {
 	public void setTipoUsuario(String tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
-	
-	
 
 }

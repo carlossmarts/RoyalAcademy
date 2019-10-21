@@ -4,6 +4,7 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+  
   <servlet>
     <servlet-name>login</servlet-name>
     <servlet-class>Servlet.GetLogin</servlet-class>
@@ -13,4 +14,30 @@
     <url-pattern>/GetLogin</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+	<servlet-name>listados</servlet-name>
+    <servlet-class>Servlet.MgmtListados</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>listados</servlet-name>
+    <url-pattern>/getListados</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+	<servlet-name>ppl</servlet-name>
+    <servlet-class>Servlet.MgmtPPL</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ppl</servlet-name>
+    <url-pattern>/getRelacionesPPL</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+	<servlet-name>pais</servlet-name>
+    <servlet-class>Servlet.MgmtPais</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>pais</servlet-name>
+    <url-pattern>/mgmtPais</url-pattern>
+  </servlet-mapping>
 </web-app>

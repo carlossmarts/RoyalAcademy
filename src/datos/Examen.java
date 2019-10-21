@@ -1,17 +1,19 @@
 package datos;
+
 import java.util.List;
-import java.util.ArrayList;
 
 public class Examen {
 	private int idExamen;
 	private List<Consigna> lstConsignas;
-	
-	public Examen() {}
-	
-	public Examen(int idExamen) {
+
+	public Examen() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Examen(int idExamen, List<Consigna> lstConsignas) {
 		super();
 		this.idExamen = idExamen;
-		this.lstConsignas = new ArrayList<>();
+		this.lstConsignas = lstConsignas;
 	}
 
 	public int getIdExamen() {
@@ -29,16 +31,5 @@ public class Examen {
 	public void setLstConsignas(List<Consigna> lstConsignas) {
 		this.lstConsignas = lstConsignas;
 	}
-	
-	public String toString() {
-		String retorno = "examen: " + idExamen;
-		for(Consigna c : lstConsignas) {
-			retorno += "\n"+ c.toString();
-		}
-		return retorno;
-	}
-	
-	
-	
-	
+
 }

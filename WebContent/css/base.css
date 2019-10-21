@@ -2,8 +2,107 @@
     font-family: "Impact";
     src: url("fuentes/impact.ttf");
 }
+
+@media only screen and (min-width : 1px) and (max-width : 599px){
+	.g_center {
+	    position: relative;
+	    width: 480px;
+	    height: 100%;
+	    margin: 0 auto;
+    }
+    .g_center_tarjeta{
+    	position: relative;
+	    width: 480px;
+	    height: 100%;
+	    margin: 0 auto;
+    }
+}
+@media only screen and (min-width : 600px) and (max-width : 839px){
+	.g_center {
+	    position: relative;
+	    height: 100%;
+	    margin: 0 auto;
+	}
+	.g_center_tarjeta{
+    	position: relative;
+	    height: 100%;
+	    margin: 0 auto;
+    }
+}
+@media only screen and (min-width : 840px) {
+	.g_center {
+	    position: relative;
+	    width: 85%;
+	    height: 100%;
+	    margin: 0 auto;
+	}
+	.g_center_tarjeta{
+    	position: relative;
+	    height: 100%;
+	    width:80%;
+	    margin: 0 auto;
+    }
+}
+.tarjetaSeleccion{
+	position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    padding-left: 22px;
+    padding-right: 22px;
+    padding-top: 23px;
+    padding-bottom: 12px;
+    margin-top: 10%;
+}
 body{
 	margin: 0px;
+}
+.showPantalla{
+	display: block !important;
+}
+.pantallaGris{
+	position: absolute;
+    z-index: 4;
+    float: left;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+}
+.usuario{
+	position: relative;
+    float: right;
+    width: auto;
+    height: 100%;
+    background-image: url(img/usuario.png);
+    background-size: 40px 40px;
+    background-position: right 7px center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    padding-right: 54px;
+    text-align: right;
+    padding-top: 8px;
+}
+#nombreUsuario{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+    color: #ffffff;
+    box-sizing: border-box;
+    font-size: 0.9em;
+}
+#cerrarSesion{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+    color: #FE5699;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-size: 0.9em;
 }
 #wrapper {
     position: relative;
@@ -15,16 +114,13 @@ body{
     flex-flow: column;
 }
 #w_titulo {
+	z-index: 6;
 	position: relative;
     float: left;
     width: 100%;
     min-height: 50px;
     height: 50px;
     background-color: #000000;
-    background-image: url(img/titulo_barra.png);
-    background-size: 210px 36px;
-    background-position: left 20% center;
-    background-repeat: no-repeat;
 }
 #w_cuerpo {
 	position: relative;
@@ -34,6 +130,13 @@ body{
     overflow: hidden;
     overflow-y: auto;
 }
+.marca{
+	height: 50px!important;
+    background-image: url(img/titulo_barra.png);
+    background-size: 210px 36px;
+    background-position: left center;
+    background-repeat: no-repeat;
+}
 #w_pie {
     position: relative;
     float: left;
@@ -42,13 +145,7 @@ body{
     max-height: 50px;
     background-color: #D9D9D9;
 }
-.w_center {
-    position: relative;
-    float: left;
-    width: 840px;
-    height: auto;
-    margin-left: calc((100% - 840px) / 2);
-}
+
 .page {
     position: relative;
     float: left;
@@ -57,6 +154,15 @@ body{
 	margin-top:50px;
 	display:flex;
 	flex-flow:row;
+}
+.page_home {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row;
+    overflow: hidden;
 }
 .col_izq {
 	position: relative;
@@ -133,12 +239,21 @@ position: relative;
     width: 100%;
     height: auto;
 }
+.s_fila{
+	position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: row;
+}
 .campo{
     position: relative;
     float: left;
     width: 100%;
     height: auto;
     margin-top: 8px;
+    box-sizing: border-box;
 }
 .campo_etiqueta{
 	position: relative;
@@ -159,11 +274,13 @@ position: relative;
     width:100%;
     height: auto;
 }
-.campo_cont input{
+.visible_no{
+	display:none !important;
+}
+.campo_cont input,.campo_cont select{
 	position: relative;
     float: left;
     width: 100%;
-    height: auto;
     margin: 0px;
     box-sizing: border-box;
     padding-left: 6px;
@@ -229,4 +346,426 @@ position: relative;
     font-family: sans-serif;
     font-size: 0.9em;
     margin-top: 5px;
+}
+.col_menu{
+	z-index: 5;
+    position: relative;
+    float: left;
+    max-width: 200px;
+    min-width: 200px;
+    height: 100%;
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.col_cont{
+	position: relative;
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+.menu_opc{
+	z-index: 2;
+    position: relative;
+    float: left;
+    width: 225px;
+    height: 44px;
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+.menu_examenes{
+	background-image: url(img/menu_examenes.png);
+}
+.menu_preguntas{
+	background-image: url(img/menu_preguntas.png);
+}
+.menu_paises{
+	background-image: url(img/menu_paises.png);
+}
+.menu_opc:hover{
+    position: relative;
+    float: left;
+    width: 225px;
+    height: 44px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    color:#000000;
+}
+.menu_texto{
+	position: relative;
+    float: left;
+    width: 200px;
+    height: 44px;
+    background-color:#FF0059;
+    background-size: 40px 40px;
+	background-position: center left 10px;
+    background-repeat: no-repeat;
+}
+.menu_selected .menu_triangulo{
+	background-image: url(img/triangulo.png);
+    background-size: 25px 44px;
+    background-position: top left;
+    background-repeat: no-repeat;
+}
+.menu_triangulo{
+	position: relative;
+    float: left;
+    width: 25px;
+    height: 44px;
+}
+.menu_texto span{
+	position: relative;
+    float: left;
+    font-family: impact;
+    padding-left: 56px;
+    padding-top: 14px;
+}
+.menu_titulo{
+	position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+    font-family: verdana;
+    padding-left: 10px;
+    padding-top: 12px;
+    font-size: 0.75em;
+    padding-bottom: 7px;
+}
+
+.cont_titulo{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-flow: row;
+}
+.cont_titulo_texto{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 100%;
+    background-color:#ffffff;
+    box-sizing: border-box;
+    padding-left: 45px;
+}
+.cont_titulo_texto span{
+	position: relative;
+    float: left;
+    font-family: impact;
+    color: #FF0059;
+    font-size: 1.6em;
+    padding-top: 16px;
+}
+.cont_remate{
+    position: relative;
+    float: left;
+    max-width: 50px;
+    min-width: 50px;
+    height: 100%;
+    background: linear-gradient(45deg,#f5f5f5,#d8d8d8 50%, rgba(0,0,0,0),rgba(0,0,0,0) 50%);
+}
+.cont_cuerpo{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: calc(100% - 50px);
+    box-sizing: border-box;
+    padding-bottom: 10px;
+    background-color: #ffffff;
+    display: flex;
+    flex-flow: row;
+    padding-left: 45px;
+}
+.cont_pag{
+	position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    border-top: solid 1px #CCCCCC;
+    border-bottom: solid 1px #CCCCCC;
+    overflow-y: scroll;
+}
+.cont_pag::-webkit-scrollbar {
+    width: 10px;
+    background-color: #DB0259;
+}
+.cont_pag::-webkit-scrollbar-thumb {
+    width: 10px;
+    background-color: #82a4b9;
+}
+.bloque{
+	position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    padding-left: 12px;
+    padding-right: 20px;
+    padding-top: 10px;
+}
+.bloque_cont{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    border-bottom: solid 1px #F2F2F2;
+    padding-bottom: 12px;
+}
+h2{
+	margin-top: 0px;
+    margin-bottom: 0px;
+    color: #ff0059;
+    font-size: 1.3em;
+}
+p{
+	margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+/*estilos grilla:*/
+.grilla{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+    max-height: 205px;
+    font-size: 0.8em;
+    display: flex;
+    flex-flow: column;
+    margin-top: 10px;
+}
+
+.g_ventana{
+	position: relative;
+    float: left;
+    width: 100%;
+	min-height: 37px;
+    max-height: 350px;
+    overflow-x: auto;
+    overflow-y: auto;
+    border-left: solid 1px #DB0259;
+    border-bottom: solid 1px #DB0259;
+    box-sizing: border-box;
+    direction: rtl;
+}
+
+.g_cont{
+    position: absolute;
+    float: left;
+    width: 680px;/* es 40+(80*cantCampos)+(80*3) */
+    min-width: 100%;
+    height: auto;
+    direction: ltr;
+}
+.g_reg{
+	position: relative;
+    float: left;
+    width: 100%;
+    height: 35px;
+    background-color:#ffffff;
+    box-sizing:border-box;
+}
+.g_titulo_reg{
+    position: relative;
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: arial;
+    font-weight: bold;
+    color: #C43C3C;
+    border-bottom: solid 1px #DB0259;
+}
+.g_titulos{
+	position: sticky;
+	top: 0;
+    z-index: 3;
+    width: 100%;
+	height: 35px;
+    background-color:#ffffff;
+}
+.g_registros .g_der {
+    border-right: solid 1px #DB0259;
+}
+.g_izq{
+    z-index: 2;
+    position: sticky;
+    float: left;
+    left: 0px;
+    width: auto;
+    height: 35px;
+    background-color: white;
+}
+.g_izq .g_campo{
+	width: 40px;
+}
+.g_cen{
+	position: absolute;
+    float: left;
+    width: auto;
+    height: 35px;
+    overflow: hidden;
+    padding-left: 40px;
+}
+.g_der{
+    z-index: 2;
+    position: sticky;
+    float: right;
+    right: 0px;
+    width: auto;
+    height: 35px;
+    background-color: #ffffff;
+}
+
+.g_registros{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+}
+.g_registros .g_der {
+    background-color: #FBFBFB;
+}
+.reg_impar{
+	background-color:#FBFBFB;
+}
+.reg_impar .g_izq{
+	background-color: #FBFBFB;
+}
+.reg_impar .g_der{
+	background-color: #F2F2F2;
+}
+.g_campo_btn{
+	overflow: hidden;
+    position: relative;
+    float: left;
+    height: 100%;
+    text-align: right;
+    box-sizing: border-box;
+    padding-right: 35px;
+    padding-top: 12px;
+    background-size: 20px 20px;
+    background-position: right 11px center;
+    background-repeat: no-repeat;
+}
+.g_campo_btn:hover{
+	overflow: hidden;
+    position: relative;
+    float: left;
+    height: 100%;
+    text-align: right;
+    box-sizing: border-box;
+    padding-right: 35px;
+    padding-top: 12px;
+    background-size: 20px 20px;
+    background-position: right 11px center;
+    background-repeat: no-repeat;
+    font-weight: bold;
+    cursor:pointer;
+}
+.g_paginado{
+	position: relative;
+    float: left;
+    width: auto;
+    height: 100%;
+}
+.g_cant_reg{
+	position: relative;
+    float: right;
+    width: auto;
+    height: 100%;
+}
+.btn_callback{
+    position: relative;
+    float: right;
+    width: auto;
+    height: 27px;
+    background-color: #FF0059;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 6px;
+    color: #ffffff;
+    font-family: sans-serif;
+    cursor: pointer;
+    font-size: 0.8em;
+    margin-left: 15px;
+}
+.bloque_final{
+	padding-bottom: 35px;
+    padding-top: 18px;
+}
+.btn_cerrar{
+	background-image: url(img/btn_baja.png);
+}
+.btn_seleccionar{
+	background-image: url(img/btn_seleccionar.png);
+}
+.btn_alta{
+	background-image: url(img/btn_alta.png);
+}
+.btn_baja{
+	background-image: url(img/btn_baja.png);
+}
+.btn_modif{
+	background-image: url(img/btn_modif.png);
+}
+.btn_ver{
+	background-image: url(img/btn_ver.png);
+}
+.g_titulos .g_campo_btn{
+	width:240px
+}
+.g_registros .g_campo_btn{
+	width:80px
+}
+.g_campo{
+    overflow: hidden;
+    position: relative;
+    float: left;
+    width: 80px;
+    height: 100%;
+    text-align: left;
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-top: 12px;
+}
+.g_ventana::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+    background-color: #DB0259;
+}
+.g_ventana::-webkit-scrollbar-thumb {
+    height: 10px;
+    width: 10px;
+    background-color: #82a4b9;
+}
+.g_ventana::-webkit-scrollbar-track {
+    height: 10px;
+    width: 10px;
+    background-color: #DB0259;
+}
+
+.g_pie{
+    position: relative;
+    float: left;
+    width: 100%;
+    max-height: 20px;
+    min-height: 20px;
+    color: #ff0059;
+    font-family: arial;
+    padding-top: 5px;
+    font-size: 0.9em;
+}
+.s_columna{
+	position: relative;
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+.s_columna .campo{
+	/*padding-left: 10px;*/
+    padding-right: 10px;
 }
