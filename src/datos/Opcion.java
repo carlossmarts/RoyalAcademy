@@ -1,0 +1,59 @@
+package datos;
+
+public class Opcion {
+	private int idOpcion;
+	private String texto;
+	private int valor;
+	private Pregunta pregunta;
+	
+	public Opcion() {}
+	
+	public Opcion(int idOpcion, String texto, int valor, Pregunta pregunta) {
+		super();
+		this.idOpcion = idOpcion;
+		this.texto = texto;
+		this.valor = valor;
+		this.pregunta = pregunta;
+	}
+
+	public Pregunta getPregunta() {
+		return pregunta;
+	}
+
+	public void setPregunta(Pregunta pregunta) {
+		this.pregunta = pregunta;
+	}
+
+	public int getIdOpcion() {
+		return idOpcion;
+	}
+
+	public void setIdOpcion(int idOpcion) {
+		this.idOpcion = idOpcion;
+	}
+
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
+
+	public int getValor() {
+		return valor;
+	}
+
+	public void setValor(int valor) {
+		this.valor = valor;
+	}
+
+	@Override
+	public String toString() {
+		return "Opcion [idOpcion=" + idOpcion + ", texto=" + texto + ", valor=" + valor + "]";
+	}
+	
+	
+	
+	
+}
