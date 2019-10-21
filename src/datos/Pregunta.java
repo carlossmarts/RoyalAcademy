@@ -7,16 +7,26 @@ public class Pregunta {
 	private int idPregunta;
 	private String texto;
 	private int valorAprobado;
+	private TipoPregunta tipoPregunta;
 	List <Opcion> lstOpciones;
 	
 	public Pregunta() {}
 	
-	public Pregunta(int idPregunta, String texto, int valorAprobado) {
+	public Pregunta(int idPregunta, String texto, int valorAprobado, TipoPregunta tipoPregunta) {
 		super();
 		this.idPregunta = idPregunta;
 		this.texto = texto;
 		this.valorAprobado = valorAprobado;
+		this.tipoPregunta = tipoPregunta;
 		this.lstOpciones = new ArrayList<>();
+	}
+
+	public TipoPregunta getTipoPregunta() {
+		return tipoPregunta;
+	}
+
+	public void setTipoPregunta(TipoPregunta tipoPregunta) {
+		this.tipoPregunta = tipoPregunta;
 	}
 
 	public List<Opcion> getLstOpciones() {

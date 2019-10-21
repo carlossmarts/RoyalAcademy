@@ -48,7 +48,7 @@ public class OpcionDAO {
 
 		Opcion retorno = null;
 
-		String sql = "select p.idPregunta, p.texto as textoPreg, p.valorAprobado,  o.texto as textoOp, valor "
+		String sql = "select p.idPregunta, p.texto as textoPreg, p.valorAprobado, o.texto as textoOp, o.valor "
 				+ "from Opcion o inner join Pregunta p "
 				+ "on o.idPregunta = p.idPregunta"
 				+ " where idOpcion ="+idOpcion;
@@ -58,7 +58,7 @@ public class OpcionDAO {
 			cnx = Conexion.getConnection();//open
 			lector = cnx.prepareStatement(sql).executeQuery();
 			while(lector.next()){
-				Pregunta p = new Pregunta(lector.getInt("idPregunta"), lector.getString("textoPreg"), lector.getInt("valorAprobado"));
+				Pregunta p = new Pregunta(lector.getInt("idPregunta"), lector.getString("textoPreg"), lector.getInt("valorAprobado"), null);
 				retorno = new Opcion(idOpcion, lector.getString("textoOp"), lector.getInt("valor"), p);
 			}
 			lector.close();

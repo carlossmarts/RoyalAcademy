@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class Examen {
 	private int idExamen;
-	private List<Consigna> lstConsignas;
+	private List<Pregunta> lstPreguntas;
 	
 	public Examen() {}
 	
 	public Examen(int idExamen) {
 		super();
 		this.idExamen = idExamen;
-		this.lstConsignas = new ArrayList<>();
+		this.lstPreguntas = new ArrayList<>();
 	}
 
 	public int getIdExamen() {
@@ -22,18 +22,18 @@ public class Examen {
 		this.idExamen = idExamen;
 	}
 
-	public List<Consigna> getLstConsignas() {
-		return lstConsignas;
+	public List<Pregunta> getLstConsignas() {
+		return lstPreguntas;
 	}
 
-	public void setLstConsignas(List<Consigna> lstConsignas) {
-		this.lstConsignas = lstConsignas;
+	public void setLstConsignas(List<Pregunta> lstConsignas) {
+		this.lstPreguntas = lstConsignas;
 	}
 	
 	public String toString() {
-		String retorno = "examen: " + idExamen;
-		for(Consigna c : lstConsignas) {
-			retorno += "\n"+ c.toString();
+		String retorno = "examen: " + idExamen + "\nPreguntas:\n";
+		for(Pregunta p : lstPreguntas) {
+			retorno += "\n"+ p.toString();
 		}
 		return retorno;
 	}

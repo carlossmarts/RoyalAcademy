@@ -1,21 +1,18 @@
 package DAO;
 
-import java.sql.CallableStatement;
+
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import datos.Opcion;
-import datos.Opciones;
 import datos.Pregunta;
-import datos.Pregunta;
-import datos.Usuario;
-import negocio.OpcionBL;
+import datos.TipoPregunta;
+
+
 
 public class PreguntaDAO {
 	
@@ -104,6 +101,34 @@ public class PreguntaDAO {
 	}
 	
 	
+	public boolean existeTipo (int idTipoPregunta) throws SQLException {
+		boolean retorno = false;
+		Connection cnx=null;
+		ResultSet lector = null;
+
+		String sql = "select count(*) as cantidad from TipoPregunta where idTipoPregunta = "+idTipoPregunta;
+		System.out.println(sql);
+
+		try{
+			cnx = Conexion.getConnection();//open
+			lector = cnx.prepareStatement(sql).executeQuery();
+			while(lector.next()){
+				int cantidad = lector.getInt("cantidad");
+				if (cantidad !=0) retorno=true;
+			}
+			lector.close();
+			cnx.close();
+		}catch(SQLException ex){
+			throw new SQLException(ex);
+		}finally {
+			if(cnx!=null) {
+				if(lector!=null && !lector.isClosed())lector.close();
+				if(!cnx.isClosed()) cnx.close();
+			}
+		}
+		return retorno;
+	}
+	
 	public Pregunta traerPregunta(int idPregunta) throws SQLException{
 
 		Connection cnx=null;
@@ -111,7 +136,9 @@ public class PreguntaDAO {
 
 		Pregunta retorno = null;
 
-		String sql = "select idPregunta, texto , valorAprobado from Pregunta where idPregunta = "+idPregunta;
+		String sql = "select p.idPregunta, p.texto , p.valorAprobado, tp.texto as tipoPregunta, tp.idTipoPregunta  "
+				+ "from Pregunta p inner join TipoPregunta tp on p.idTipoPregunta = tp.idTipoPregunta "
+				+ "where idPregunta = "+idPregunta;
 		System.out.println(sql);
 
 		try{
@@ -119,7 +146,8 @@ public class PreguntaDAO {
 			lector = cnx.prepareStatement(sql).executeQuery();
 			
 			while(lector.next()){
-				retorno = new Pregunta(lector.getInt("idPregunta"), lector.getString("texto"), lector.getInt("valorAprobado"));
+				TipoPregunta tp = new TipoPregunta(lector.getInt("idTipoPregunta"), lector.getString("tipoPregunta"));
+				retorno = new Pregunta(lector.getInt("idPregunta"), lector.getString("texto"), lector.getInt("valorAprobado"), tp);
 			}
 			
 			lector.close();
@@ -142,7 +170,7 @@ public class PreguntaDAO {
 		Connection cnx=null;
 		PreparedStatement ps = null;
 
-		String sql = "insert into Pregunta (texto, valorAprobado) values (?,?)";
+		String sql = "insert into Pregunta (texto, valorAprobado, idTipoPregunta) values (?,?,?)";
 		//System.out.println(sql);
 
 		try{
@@ -151,6 +179,7 @@ public class PreguntaDAO {
 			
 			ps.setString(1, p.getTexto());
 			ps.setInt(2, p.getValorAprobado());
+			ps.setInt(3, p.getTipoPregunta().getIdTipoPregunta());
 			
 			ps.executeUpdate();
 			ps.close();
@@ -198,13 +227,14 @@ public void modificarPregunta(Pregunta p) throws SQLException{
 	
 	Connection cnx=Conexion.getConnection();//open
 	
-	String sql = "update Pregunta set texto = ?,valorAprobado = ? where idPregunta = ?";
+	String sql = "update Pregunta set texto = ?,valorAprobado = ?, idTipoPregunta = ? where idPregunta = ?";
 	//System.out.println(sql);
 	PreparedStatement ps = cnx.prepareStatement(sql);
 	try{
 		ps.setString(1, p.getTexto());
 		ps.setInt(2, p.getValorAprobado());
-		ps.setInt(3, p.getIdPregunta());
+		ps.setInt(3, p.getTipoPregunta().getIdTipoPregunta());
+		ps.setInt(4, p.getIdPregunta());
 	
 		ps.executeUpdate();
 		
@@ -229,7 +259,9 @@ public Pregunta traerPreguntaYOpciones(int idPregunta) throws SQLException{
 	ResultSet lector1 = null;
 	ResultSet lector2 = null;
 
-	String pregunta = "select idPregunta, texto , valorAprobado from Pregunta where idPregunta = "+idPregunta;
+	String pregunta = "select p.idPregunta, p.texto , p.valorAprobado, tp.texto as tipoPregunta, tp.idTipoPregunta  "
+					+ "from Pregunta p inner join TipoPregunta tp on p.idTipoPregunta = tp.idTipoPregunta "
+					+ "where idPregunta = "+idPregunta;
 	//System.out.println(sql);
 	
 	String opciones = "select idOpcion, texto, valor from Opcion where idPregunta = "+ idPregunta;
@@ -240,7 +272,8 @@ public Pregunta traerPreguntaYOpciones(int idPregunta) throws SQLException{
 		
 		lector1 = cnx.prepareStatement(pregunta).executeQuery();
 		while(lector1.next()){
-			retorno = new Pregunta(lector1.getInt("idPregunta"), lector1.getString("texto"), lector1.getInt("valorAprobado"));
+			TipoPregunta tp = new TipoPregunta(lector1.getInt("idTipoPregunta"), lector1.getString("tipoPregunta"));
+			retorno = new Pregunta(lector1.getInt("idPregunta"), lector1.getString("texto"), lector1.getInt("valorAprobado"), tp);
 		}
 		
 		lector2 = cnx.prepareStatement(opciones).executeQuery();

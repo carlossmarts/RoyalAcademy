@@ -8,6 +8,7 @@ import DAO.Conexion;
 import DAO.EntidadDAO;
 import DAO.PreguntaDAO;
 import datos.Pregunta;
+import datos.TipoPregunta;
 import datos.Pregunta;
 
 public class PreguntaBL {
@@ -29,6 +30,17 @@ public class PreguntaBL {
 		boolean retorno = false;
 		try {
 			retorno = dao.existeOpcion(idPregunta);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return retorno;
+	}
+	
+	public boolean existeTipo(int idTipoPregunta) {
+		PreguntaDAO dao = new PreguntaDAO();
+		boolean retorno = false;
+		try {
+			retorno = dao.existeTipo(idTipoPregunta);
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -61,9 +73,13 @@ public class PreguntaBL {
 		return retorno;
 	}
 	
-	public void agregarPregunta (int idPregunta, String texto, int valorAprobado) throws Exception{
+	public void agregarPregunta (int idPregunta, String texto, int valorAprobado, TipoPregunta tp) throws Exception{
 		PreguntaDAO dao = new PreguntaDAO();
-		Pregunta p = new Pregunta(idPregunta, texto, valorAprobado);
+		Pregunta p = new Pregunta(idPregunta, texto, valorAprobado, tp);
+		if(!existeTipo(tp.getIdTipoPregunta())) {
+			throw new Exception("No existe tipo de pregunta");
+		}
+		
 		if (existePregunta(0,  texto)) {
 			throw new Exception("ya existe esa Pregunta");
 		}
@@ -79,6 +95,9 @@ public class PreguntaBL {
 	}
 	
 	public void actualizarPregunta (Pregunta p) throws Exception{
+		if(!existeTipo(p.getTipoPregunta().getIdTipoPregunta())) {
+			throw new Exception("No existe tipo de pregunta");
+		}
 		if (existePregunta(p.getIdPregunta(), p.getTexto())) {
 			throw new Exception("ya existe esa Pregunta");
 		}
