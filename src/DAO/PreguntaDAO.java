@@ -12,8 +12,6 @@ import datos.Opcion;
 import datos.Pregunta;
 import datos.TipoPregunta;
 
-
-
 public class PreguntaDAO {
 	
 	public boolean existePregunta (int idPregunta, String texto) throws SQLException {
@@ -22,6 +20,34 @@ public class PreguntaDAO {
 		ResultSet lector = null;
 
 		String sql = "select count(*) as cantidad from Pregunta where idPregunta <> " + idPregunta+ " and texto = '"+texto+"'";
+		System.out.println(sql);
+
+		try{
+			cnx = Conexion.getConnection();//open
+			lector = cnx.prepareStatement(sql).executeQuery();
+			while(lector.next()){
+				int cantidad = lector.getInt("cantidad");
+				if (cantidad !=0) retorno=true;
+			}
+			lector.close();
+			cnx.close();
+		}catch(SQLException ex){
+			throw new SQLException(ex);
+		}finally {
+			if(cnx!=null) {
+				if(lector!=null && !lector.isClosed())lector.close();
+				if(!cnx.isClosed()) cnx.close();
+			}
+		}
+		return retorno;
+	}
+	
+	public boolean existePreguntaXExamen (int idPregunta) throws SQLException {
+		boolean retorno = false;
+		Connection cnx=null;
+		ResultSet lector = null;
+
+		String sql = "select count(*) as cantidad from PreguntaXExamen where idPregunta =" + idPregunta;
 		System.out.println(sql);
 
 		try{
@@ -278,7 +304,7 @@ public Pregunta traerPreguntaYOpciones(int idPregunta) throws SQLException{
 		
 		lector2 = cnx.prepareStatement(opciones).executeQuery();
 		while(lector2.next()){
-			Opcion o = new Opcion(lector2.getInt("idOpcion"), lector2.getString("texto"), lector2.getInt("valor"), null);
+			Opcion o = new Opcion(lector2.getInt("idOpcion"), lector2.getString("texto"), lector2.getInt("valor"));
 			lstOpciones.add(o);
 		}
 		retorno.setLstOpciones(lstOpciones);

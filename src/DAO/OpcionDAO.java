@@ -48,18 +48,14 @@ public class OpcionDAO {
 
 		Opcion retorno = null;
 
-		String sql = "select p.idPregunta, p.texto as textoPreg, p.valorAprobado, o.texto as textoOp, o.valor "
-				+ "from Opcion o inner join Pregunta p "
-				+ "on o.idPregunta = p.idPregunta"
-				+ " where idOpcion ="+idOpcion;
+		String sql = "select texto, valor from Opcion where idOpcion ="+idOpcion;
 		System.out.println(sql);
 
 		try{
 			cnx = Conexion.getConnection();//open
 			lector = cnx.prepareStatement(sql).executeQuery();
 			while(lector.next()){
-				Pregunta p = new Pregunta(lector.getInt("idPregunta"), lector.getString("textoPreg"), lector.getInt("valorAprobado"), null);
-				retorno = new Opcion(idOpcion, lector.getString("textoOp"), lector.getInt("valor"), p);
+				retorno = new Opcion(idOpcion, lector.getString("texto"), lector.getInt("valor"));
 			}
 			lector.close();
 			cnx.close();
@@ -74,17 +70,17 @@ public class OpcionDAO {
 		return retorno;
 	}
 
-	public void agregarOpcion(Opcion o) throws SQLException{
+	public void agregarOpcion(Opcion o, int idPregunta) throws SQLException{
 
-		Connection cnx=Conexion.getConnection();//open
-
-		int retorno = 0;
+		Connection cnx = null;
+		PreparedStatement ps = null;
 		String sql = "insert into Opcion (idPregunta, texto, valor) values (?,?,?)";
 		//System.out.println(sql);
 
-		PreparedStatement ps = cnx.prepareStatement(sql);
 		try{
-			ps.setInt(1, o.getPregunta().getIdPregunta());
+			cnx=Conexion.getConnection();//open
+			ps = cnx.prepareStatement(sql);
+			ps.setInt(1, idPregunta);
 			ps.setString(2, o.getTexto());
 			ps.setInt(3, o.getValor());
 			
@@ -103,13 +99,16 @@ public class OpcionDAO {
 
 	public void eliminarOpcion(int idOpcion) throws SQLException{
 
-		Connection cnx=Conexion.getConnection();//open
-
+		Connection cnx = null;
+		PreparedStatement ps = null; 
 		String sql = "delete from Opcion where idOpcion = ?";
 		//System.out.println(sql);
 
-		PreparedStatement ps = cnx.prepareStatement(sql);
+		
 		try{
+			cnx=Conexion.getConnection();//open
+			ps = cnx.prepareStatement(sql);
+			
 			ps.setInt(1, idOpcion);
 			ps.executeUpdate();
 			ps.close();
@@ -127,13 +126,16 @@ public class OpcionDAO {
 
 public void modificarOpcion(Opcion o) throws SQLException{
 	
-	Connection cnx=Conexion.getConnection();//open
+	Connection cnx=null;
+	PreparedStatement ps = null;
 	
 	String sql = "update Opcion set texto = ?,valor = ? where idOpcion = ?";
 	//System.out.println(sql);
 	
-	PreparedStatement ps = cnx.prepareStatement(sql);
 	try{
+		cnx=Conexion.getConnection();//open
+		ps = cnx.prepareStatement(sql);
+		
 		ps.setString(1, o.getTexto());
 		ps.setInt(2, o.getValor());
 		ps.setInt(3, o.getIdOpcion());

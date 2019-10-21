@@ -4,14 +4,33 @@ import java.util.ArrayList;
 
 public class Examen {
 	private int idExamen;
-	private List<Pregunta> lstPreguntas;
+	private String codigo;
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+
+	private List<Integer> lstPreguntas;
 	
 	public Examen() {}
 	
-	public Examen(int idExamen) {
-		super();
+	public Examen(int idExamen, String codigo) {
+		this.codigo = codigo;
 		this.idExamen = idExamen;
 		this.lstPreguntas = new ArrayList<>();
+	}
+
+
+	public List<Integer> getLstPreguntas() {
+		return lstPreguntas;
+	}
+
+	public void setLstPreguntas(List<Integer> lstPreguntas) {
+		this.lstPreguntas = lstPreguntas;
 	}
 
 	public int getIdExamen() {
@@ -22,20 +41,9 @@ public class Examen {
 		this.idExamen = idExamen;
 	}
 
-	public List<Pregunta> getLstConsignas() {
-		return lstPreguntas;
-	}
-
-	public void setLstConsignas(List<Pregunta> lstConsignas) {
-		this.lstPreguntas = lstConsignas;
-	}
 	
 	public String toString() {
-		String retorno = "examen: " + idExamen + "\nPreguntas:\n";
-		for(Pregunta p : lstPreguntas) {
-			retorno += "\n"+ p.toString();
-		}
-		return retorno;
+		return "examen: " + idExamen + ", codigo" + codigo;
 	}
 	
 	

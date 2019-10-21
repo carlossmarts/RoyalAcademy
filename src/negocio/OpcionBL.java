@@ -39,13 +39,13 @@ public class OpcionBL {
 		return retorno;
 	}
 	
-	public void agregarOpcion (int idOpcion, String texto, int valor, Pregunta pregunta) throws Exception{
+	public void agregarOpcion (int idOpcion, String texto, int valor, int idPregunta) throws Exception{
 		OpcionDAO odao = new OpcionDAO();
-		Opcion o = new Opcion(idOpcion, texto, valor, pregunta);
-		if (existeOpcion(pregunta.getIdPregunta(), texto)) {
+		Opcion o = new Opcion(idOpcion, texto, valor);
+		if (existeOpcion(idPregunta, texto)) {
 			throw new Exception("ya existe esa opcion para esa pregunta");
 		}
-		odao.agregarOpcion(o);
+		odao.agregarOpcion(o, idPregunta);
 	}
 	
 	public void eliminarOpcion (int idOpcion) throws SQLException{
@@ -53,8 +53,8 @@ public class OpcionBL {
 		odao.eliminarOpcion(idOpcion);
 	}
 	
-	public void actualizarOpcion (Opcion o) throws Exception{
-		if (existeOpcion(o.getPregunta().getIdPregunta(), o.getTexto())) {
+	public void actualizarOpcion (Opcion o, int idPregunta) throws Exception{
+		if (existeOpcion(idPregunta, o.getTexto())) {
 			throw new Exception("ya existe esa opcion para esa pregunta");
 		}
 		OpcionDAO odao = new OpcionDAO();

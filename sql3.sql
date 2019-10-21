@@ -80,12 +80,17 @@ CREATE  TABLE `royalacademy`.`Opcion` (
   `valor` INT,
   PRIMARY KEY (`idOpcion`) );
 
+CREATE  TABLE `royalacademy`.`Examen` (
+  `idExamen` INT NOT NULL AUTO_INCREMENT ,
+  `codigo` VARCHAR(100) NULL ,
+  PRIMARY KEY (`idExamen`));
 
 CREATE  TABLE `royalacademy`.`PreguntaXExamen` (
-  `idPreguntaXConsigna` INT NOT NULL AUTO_INCREMENT ,
+  `idPreguntaXExamen` INT NOT NULL AUTO_INCREMENT ,
   `idExamen` INT,
   `idPregunta` INT,
-  PRIMARY KEY (`idPreguntaXConsigna`) );
+  PRIMARY KEY (`idPreguntaXExamen`) );
+  
 insert into pais(pais) values ('No Asignado');
 insert into pais(pais) values ('Argentina');
 insert into provincia(provincia) values ('No Asignado');
@@ -104,4 +109,4 @@ select * from TipoPregunta;
 select * from usuario;
 select * from entidad;
 select * from Pregunta where idpregunta = 1;
-select * from Opcion where idpregunta = 1;
+select * from Opcion;

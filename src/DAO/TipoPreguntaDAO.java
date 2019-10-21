@@ -101,6 +101,37 @@ public class TipoPreguntaDAO {
 		}
 		return retorno;
 	}
+	
+	public boolean existePregunta (int idTipoPregunta) throws SQLException {
+		boolean retorno = false;
+		Connection cnx=null;
+		ResultSet lector = null;
+
+		String sql = "select count(*) as cantidad from Pregunta where idTipoPregunta = " + idTipoPregunta;
+		System.out.println(sql);
+
+		try{
+			cnx = Conexion.getConnection();//open
+			lector = cnx.prepareStatement(sql).executeQuery();
+			while(lector.next()){
+				int cantidad = lector.getInt("cantidad");
+				if (cantidad !=0) {
+					retorno=true;
+				}
+			}
+			lector.close();
+			cnx.close();
+		}catch(SQLException ex){
+			throw new SQLException(ex);
+		}finally {
+			if(cnx!=null) {
+				if(lector!=null && !lector.isClosed())lector.close();
+				if(!cnx.isClosed()) cnx.close();
+			}
+		}
+		return retorno;
+	}
+	
 	public int agregarTipoPregunta(TipoPregunta tp) throws SQLException{
 
 		Connection cnx = null;

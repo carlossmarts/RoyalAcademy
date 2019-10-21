@@ -36,6 +36,17 @@ public class PreguntaBL {
 		return retorno;
 	}
 	
+	public boolean existePreguntaXExamen(int idPregunta) {
+		PreguntaDAO dao = new PreguntaDAO();
+		boolean retorno = false;
+		try {
+			retorno = dao.existePreguntaXExamen(idPregunta);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return retorno;
+	}
+	
 	public boolean existeTipo(int idTipoPregunta) {
 		PreguntaDAO dao = new PreguntaDAO();
 		boolean retorno = false;
@@ -89,6 +100,9 @@ public class PreguntaBL {
 	public void eliminarPregunta (int idPregunta) throws Exception{
 		if(existeOpcion(idPregunta)) {
 			throw new Exception("error, no se puede eliminar porque existe al menos una opcion que depende de esa pregunta");
+		}
+		if(existePreguntaXExamen(idPregunta)) {
+			throw new Exception("error, no se puede eliminar porque existe al menos examen que depende de esa pregunta");
 		}
 		PreguntaDAO odao = new PreguntaDAO();
 		odao.eliminarPregunta(idPregunta);

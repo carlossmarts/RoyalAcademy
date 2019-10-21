@@ -34,14 +34,9 @@ public class TipoPreguntaBL {
 	}
 	
 
-	public boolean existeTipo (String texto, int id) throws SQLException {
+	public boolean existeTipo (String texto, int id) throws Exception {
 		boolean retorno = false;
-		try {
-			retorno = dao.existeTipo(texto, id);
-		}
-		catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		retorno = dao.existeTipo(texto, id);
 		return retorno;
 	}
 	
@@ -56,8 +51,16 @@ public class TipoPreguntaBL {
 		return retorno;
 	}
 
-	public void eliminarTipoPregunta(int idTipoPregunta) throws SQLException{
-			dao.eliminarTipoPregunta(idTipoPregunta);
+	public boolean existePregunta (int idTipoPregunta) throws Exception {
+		boolean retorno = dao.existePregunta(idTipoPregunta);
+		return retorno;
+	}
+	
+	public void eliminarTipoPregunta(int idTipoPregunta) throws Exception{
+		if(existePregunta(idTipoPregunta)) {
+			throw new Exception("error, no se puede eliminar porque existe al menos una pregunta de este tipo");
+		}
+		dao.eliminarTipoPregunta(idTipoPregunta);
 	}
 
 
