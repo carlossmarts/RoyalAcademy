@@ -1,18 +1,15 @@
 package datos;
-
 import java.util.List;
+import java.util.ArrayList;
 
-public class Opciones {
-	private int idOpciones;
+public class Opciones extends Pregunta {
 	private List<Opcion> lstOpciones;
 
-	public Opciones() {
 	
-	}
 
-	public Opciones(List<Opcion> lstOpciones) {
-		super();
-		this.lstOpciones = lstOpciones;
+	public Opciones(int idPregunta, String texto, int valorAprobado) {
+		super(idPregunta, texto, valorAprobado);
+		this.lstOpciones = new ArrayList<>();
 	}
 
 	public List<Opcion> getLstOpciones() {
@@ -23,13 +20,18 @@ public class Opciones {
 		this.lstOpciones = lstOpciones;
 	}
 
-	public int getIdOpciones() {
-		return idOpciones;
+	@Override
+	public String toString() {
+		String retorno = super.toString();
+		for (Opcion o : lstOpciones) {
+			retorno += o.toString();
+		}
+		return retorno;
 	}
-
-	public void setIdOpciones(int idOpciones) {
-		this.idOpciones = idOpciones;
-	}
+	
+	
+	
+	
 	
 
 }

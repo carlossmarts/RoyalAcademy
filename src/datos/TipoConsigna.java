@@ -3,11 +3,9 @@ package datos;
 public class TipoConsigna {
 	private int idTipoConsigna;
 	private String texto;
-
-	public TipoConsigna() {
-		// TODO Auto-generated constructor stub
-	}
-
+	
+	public TipoConsigna() {}
+	
 	public TipoConsigna(int idTipoConsigna, String texto) {
 		super();
 		this.idTipoConsigna = idTipoConsigna;
@@ -29,5 +27,13 @@ public class TipoConsigna {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
+
+	@Override
+	public String toString() {
+		return "TipoConsigna [idTipoConsigna=" + idTipoConsigna + ", texto=" + texto + "]";
+	}
+	
+	
+	
 
 }

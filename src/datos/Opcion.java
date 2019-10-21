@@ -4,16 +4,24 @@ public class Opcion {
 	private int idOpcion;
 	private String texto;
 	private int valor;
-
-	public Opcion() {
-
-	}
-
-	public Opcion(int idOpcion, String texto, int valor) {
+	private Pregunta pregunta;
+	
+	public Opcion() {}
+	
+	public Opcion(int idOpcion, String texto, int valor, Pregunta pregunta) {
 		super();
 		this.idOpcion = idOpcion;
 		this.texto = texto;
 		this.valor = valor;
+		this.pregunta = pregunta;
+	}
+
+	public Pregunta getPregunta() {
+		return pregunta;
+	}
+
+	public void setPregunta(Pregunta pregunta) {
+		this.pregunta = pregunta;
 	}
 
 	public int getIdOpcion() {
@@ -40,4 +48,12 @@ public class Opcion {
 		this.valor = valor;
 	}
 
+	@Override
+	public String toString() {
+		return "Opcion [idOpcion=" + idOpcion + ", texto=" + texto + ", valor=" + valor + "]";
+	}
+	
+	
+	
+	
 }
