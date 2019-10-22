@@ -23,9 +23,10 @@ public class GetLogin extends HttpServlet{
 		procesarPeticion(request, response);
 	}
 	private void procesarPeticion(HttpServletRequest request, HttpServletResponse	response) throws ServletException, IOException{
-		Gson gson = new Gson();//objeto que trae funciones de conversión entre clases JAVA y JSON
+		System.out.println("\n hasta aca anda");
+		Gson gson = new Gson();//objeto que trae funciones de conversiï¿½n entre clases JAVA y JSON
 		LoginReq req = gson.fromJson(request.getParameter("param"), LoginReq.class);
-		
+		System.out.println("\n hasta aca anda");
 		LoginResp resp = new LoginResp();
 
 		try{

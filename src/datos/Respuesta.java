@@ -2,52 +2,36 @@ package datos;
 
 public class Respuesta {
 	private int idRespuesta;
+	private int idOpcion;
 	private int idPregunta;
-	private String respuesta;
-	private int valor;
-
-	public Respuesta(int idRespuesta, int idPregunta, String respuesta, int valor) {
+	public Respuesta(int idRespuesta, int idOpcion, int idPregunta) {
 		super();
 		this.idRespuesta = idRespuesta;
+		this.idOpcion = idOpcion;
 		this.idPregunta = idPregunta;
-		this.respuesta = respuesta;
-		this.valor = valor;
 	}
-
-	public Respuesta() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public int getIdRespuesta() {
 		return idRespuesta;
 	}
-
 	public void setIdRespuesta(int idRespuesta) {
 		this.idRespuesta = idRespuesta;
 	}
-
+	public int getIdOpcion() {
+		return idOpcion;
+	}
+	public void setIdOpcion(int idOpcion) {
+		this.idOpcion = idOpcion;
+	}
 	public int getIdPregunta() {
 		return idPregunta;
 	}
-
 	public void setIdPregunta(int idPregunta) {
 		this.idPregunta = idPregunta;
 	}
-
-	public String getRespuesta() {
-		return respuesta;
+	@Override
+	public String toString() {
+		return "Respuesta [idRespuesta=" + idRespuesta + ", idOpcion=" + idOpcion + ", idPregunta=" + idPregunta + "]";
 	}
-
-	public void setRespuesta(String respuesta) {
-		this.respuesta = respuesta;
-	}
-
-	public int getValor() {
-		return valor;
-	}
-
-	public void setValor(int valor) {
-		this.valor = valor;
-	}
-
+	
+	
 }

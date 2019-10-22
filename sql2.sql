@@ -61,16 +61,26 @@ CREATE  TABLE `royalacademy`.`entidad` (
   `departamento` VARCHAR(45) NULL ,
   PRIMARY KEY (`idUsuario`) );
   
-CREATE  TABLE `royalacademy`.`TipoPregunta` (
-  `idTipoPregunta` INT NOT NULL AUTO_INCREMENT ,
-  `texto` VARCHAR(200) NULL ,
-  PRIMARY KEY (`idTipoPregunta`) );
+CREATE  TABLE `royalacademy`.`tipoConsigna` (
+  `idTipoConsigna` INT NOT NULL AUTO_INCREMENT ,
+  `texto` VARCHAR(100) NULL ,
+  PRIMARY KEY (`idTipoConsigna`) );
+  
+CREATE  TABLE `royalacademy`.`Consigna` (
+  `idConsigna` INT NOT NULL AUTO_INCREMENT ,
+  `idTipoConsigna` INT,
+  PRIMARY KEY (`idConsigna`) );
+  
+CREATE  TABLE `royalacademy`.`PreguntaXConsigna` (
+  `idPreguntaXConsigna` INT NOT NULL AUTO_INCREMENT ,
+  `idConsigna` INT,
+  `idPregunta` INT,
+  PRIMARY KEY (`idPreguntaXConsigna`) );
   
 CREATE  TABLE `royalacademy`.`Pregunta` (
   `idPregunta` INT NOT NULL AUTO_INCREMENT ,
-  `texto` VARCHAR(200) NULL ,
+  `texto` VARCHAR(100) NULL ,
   `valorAprobado` INT,
-  `idTipoPregunta` INT,
   PRIMARY KEY (`idPregunta`) );
   
 CREATE  TABLE `royalacademy`.`Opcion` (
@@ -80,30 +90,6 @@ CREATE  TABLE `royalacademy`.`Opcion` (
   `valor` INT,
   PRIMARY KEY (`idOpcion`) );
 
-CREATE  TABLE `royalacademy`.`Examen` (
-  `idExamen` INT NOT NULL AUTO_INCREMENT ,
-  `codigo` VARCHAR(100) NULL ,
-  PRIMARY KEY (`idExamen`));
-
-CREATE  TABLE `royalacademy`.`PreguntaXExamen` (
-  `idPreguntaXExamen` INT NOT NULL AUTO_INCREMENT ,
-  `idExamen` INT,
-  `idPregunta` INT,
-  PRIMARY KEY (`idPreguntaXExamen`) );
-  
-CREATE  TABLE `royalacademy`.`Respuesta` (
-  `idRespuesta` INT NOT NULL AUTO_INCREMENT ,
-  `idResolucion` INT,
-  `idOpcion` INT,
-  `idPregunta` INT,
-  PRIMARY KEY (`idRespuesta`) );
-  
-CREATE  TABLE `royalacademy`.`Resolucion` (
-  `idResolucion` INT NOT NULL AUTO_INCREMENT ,
-  `dniAlumno` INT,
-  `idExamen` INT,
-  PRIMARY KEY (`idResolucion`) );
-  
 insert into pais(pais) values ('No Asignado');
 insert into pais(pais) values ('Argentina');
 insert into provincia(provincia) values ('No Asignado');
@@ -111,18 +97,9 @@ insert into provincia(provincia) values ('Buenos Aires');
 insert into localidad(localidad) values ('No Asignado');
 insert into localidad(localidad) values ('Lomas de Zamora');
 
-insert into tipoUsuario(tipoUsuario) values('estudiante');
-insert into tipoUsuario(tipoUsuario) values('docente');
+insert into tipoUsuario(tipoUsuario) values(estudiante);
+insert into tipoUsuario(tipoUsuario) values(docente);
 
-insert into usuario(mail,contrasenia,estado,fecRegistro) values('clowd1987@hmail.com','pass','S',convert(now(),DATE));
+insert into usuario(mail,contrasenia,estado,fecRegistro) values('clowd1987@hmail.com',"pass",'S',convert(now(),DATE));
 insert into entidad (idUsuario,apellido,nombre,documento,fecNacimiento,codGenero,idPais,idProvincia,idLocalidad,codigoPostal,calle,numero,departamento)
 values ((select max(idUsuario) from usuario),'Di Stéfano','Agustín',33338406,'1892-08-28','NA',1,1,1,'1024','Mitre',2538,'');
-
-select * from TipoPregunta;
-select * from usuario;
-select * from entidad;
-select * from Pregunta where idpregunta = 1;
-select * from Opcion;
-
-select * from Resolucion;
-select * from Respuesta;
