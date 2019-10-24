@@ -2,20 +2,26 @@ package datos;
 
 public class Sede {
 	private int idSede;
-	private String pais;
-	private String provincia;
-	private String direccion;
+	private int idPais;
+	private int idProvincia;
+	private int idLocalidad;
+	private String codigoPostal;
+	private String calle;
+	private int numero;
 
 	public Sede() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public Sede(int idSede, String pais, String provincia, String direccion) {
+	public Sede(int idSede, int idPais, int idProvincia, int idLocalidad, String codigoPostal, String calle,
+			int numero) {
 		super();
 		this.idSede = idSede;
-		this.pais = pais;
-		this.provincia = provincia;
-		this.direccion = direccion;
+		this.idPais = idPais;
+		this.idProvincia = idProvincia;
+		this.idLocalidad = idLocalidad;
+		this.codigoPostal = codigoPostal;
+		this.calle = calle;
+		this.numero = numero;
 	}
 
 	public int getIdSede() {
@@ -26,28 +32,58 @@ public class Sede {
 		this.idSede = idSede;
 	}
 
-	public String getPais() {
-		return pais;
+	public int getIdPais() {
+		return idPais;
 	}
 
-	public void setPais(String pais) {
-		this.pais = pais;
+	public void setIdPais(int idPais) {
+		this.idPais = idPais;
 	}
 
-	public String getProvincia() {
-		return provincia;
+	public int getIdProvincia() {
+		return idProvincia;
 	}
 
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
+	public void setIdProvincia(int idProvincia) {
+		this.idProvincia = idProvincia;
 	}
 
-	public String getDireccion() {
-		return direccion;
+	public int getIdLocalidad() {
+		return idLocalidad;
 	}
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+	public void setIdLocalidad(int idLocalidad) {
+		this.idLocalidad = idLocalidad;
+	}
+
+	public String getCodigoPostal() {
+		return codigoPostal;
+	}
+
+	public void setCodigoPostal(String codigoPostal) {
+		this.codigoPostal = codigoPostal;
+	}
+
+	public String getCalle() {
+		return calle;
+	}
+
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	@Override
+	public String toString() {
+		return "Sede [idSede=" + idSede + ", idPais=" + idPais + ", idProvincia=" + idProvincia + ", idLocalidad="
+				+ idLocalidad + ", codigoPostal=" + codigoPostal + ", calle=" + calle + ", numero=" + numero + "]";
 	}
 
 }
