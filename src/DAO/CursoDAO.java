@@ -4,15 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import datos.Sede;
 
-public class SedeDAO {
-	public boolean existeSede(String calle, int numero) throws SQLException {
+import datos.Curso;
+
+public class CursoDAO {
+	public boolean existeCurso(String descripcion) throws SQLException {
 		Connection cnx = null;
 		ResultSet lector = null;
 		boolean retorno = false;
 
-		String sql = "select count(*) as cantidad from Sede" + " where calle = '" + calle + "' and numero = " + numero;
+		String sql = "select count(*) as cantidad from Curso" + " where descripcion = '" + descripcion + "'";
 		System.out.println(sql);
 
 		try {
@@ -39,21 +40,21 @@ public class SedeDAO {
 		return retorno;
 	}
 
-	public int traerIdSede(String calle, int numero) throws SQLException {
+	public int traerIdCurso(String descripcion) throws SQLException {
 
 		Connection cnx = null;
 		ResultSet lector = null;
 
 		int retorno = 0;
 
-		String sql = "select idSede from Sede " + "where calle = '" + calle + "' and numero =" + numero;
+		String sql = "select idCurso from Curso " + "where descripcion = '" + descripcion + "'";
 		System.out.println(sql);
 
 		try {
 			cnx = Conexion.getConnection();// open
 			lector = cnx.prepareStatement(sql).executeQuery();
 			while (lector.next()) {
-				retorno = lector.getInt("idSede");
+				retorno = lector.getInt("idCurso");
 			}
 			lector.close();
 			cnx.close();
@@ -70,25 +71,20 @@ public class SedeDAO {
 		return retorno;
 	}
 
-	public Sede traerSede(String calle, int numero) throws SQLException {
-		Sede retorno = null;
+	public Curso traerCurso(String descripcion) throws SQLException {
+		Curso retorno = null;
 		Connection cnx = null;
 		ResultSet lector1 = null;
 
-		String sql = "select idSede, idPais, idProvincia, idLocalidad, codigoPostal from Sede " + "where calle = '"
-				+ calle + "' and numero = " + numero;
+		String sql = "select idCurso, descripcion from Curso " + "where descripcion = '" + descripcion + "'";
 
 		try {
 			cnx = Conexion.getConnection();// open
 			lector1 = cnx.prepareStatement(sql).executeQuery();
-			int idSede = 0;
+			int idCurso = 0;
 			while (lector1.next()) {
-				idSede = lector1.getInt("idSede");
-				int idPais = lector1.getInt("idPais");
-				int idProvincia = lector1.getInt("idProvincia");
-				int idLocalidad = lector1.getInt("idLocalidad");
-				String codigoPostal = lector1.getString("codigoPostal");
-				retorno = new Sede(idSede, idPais, idProvincia, idLocalidad, codigoPostal, calle, numero);
+				idCurso = lector1.getInt("idCurso");
+				retorno = new Curso(idCurso, descripcion);
 			}
 			lector1.close();
 			cnx.close();
@@ -105,25 +101,21 @@ public class SedeDAO {
 		return retorno;
 	}
 
-	public Sede traerSede(int idSede) throws SQLException {
-		Sede retorno = null;
+
+	public Curso traerCurso(int idCurso) throws SQLException {
+		Curso retorno = null;
 		Connection cnx = null;
 		ResultSet lector1 = null;
 
-		String sql = "select idSede, idPais, idProvincia, idLocalidad, codigoPostal, calle, numero from Sede " + "where idSede="+idSede;
+		String sql = "select idCurso, descripcion from Curso " + "where idCurso="+idCurso;
 
 		try {
 			cnx = Conexion.getConnection();// open
 			lector1 = cnx.prepareStatement(sql).executeQuery();
 			while (lector1.next()) {
-				idSede = lector1.getInt("idSede");
-				int idPais = lector1.getInt("idPais");
-				int idProvincia = lector1.getInt("idProvincia");
-				int idLocalidad = lector1.getInt("idLocalidad");
-				String codigoPostal = lector1.getString("codigoPostal");
-				String calle = lector1.getString("calle");		
-				int numero = lector1.getInt("numero");	
-				retorno = new Sede(idSede, idPais, idProvincia, idLocalidad, codigoPostal, calle, numero);
+				idCurso = lector1.getInt("idCurso");
+				String descripcion = lector1.getString("descripcion");
+				retorno = new Curso(idCurso, descripcion);
 			}
 			lector1.close();
 			cnx.close();
@@ -139,21 +131,15 @@ public class SedeDAO {
 		}
 		return retorno;
 	}
-	public int agregarSede(Sede s) throws SQLException {
+	public int agregarCurso(Curso c) throws SQLException {
 		Connection cnx = null;
 		PreparedStatement ps = null;
 
 		int retorno = 0;
-		int idPais = s.getIdPais();
-		int idProvincia = s.getIdProvincia();
-		int idLocalidad = s.getIdLocalidad();
-		String codigoPostal = s.getCodigoPostal();
-		String calle = s.getCalle();
-		int numero = s.getNumero();
+		int idCurso= c.getIdCurso();
+		String descripcion = c.getDescripcion();
 
-		String sql = "insert into Sede (idPais, idProvincia,idLocalidad,codigoPostal, calle, numero )" + "values ("
-				+ idPais + "," + idProvincia + "," + idLocalidad + "," + codigoPostal + ",'" + calle + "'," + numero
-				+ ")";
+		String sql = "insert into Curso (idCurso, descripcion) values ('"+descripcion+"')";
 		System.out.println(sql);
 		try {
 			cnx = Conexion.getConnection();// open
@@ -172,7 +158,7 @@ public class SedeDAO {
 					cnx.close();
 			}
 		}
-		retorno = traerIdSede(calle, numero);
+		retorno = traerIdCurso(descripcion);
 		return retorno;
 	}
 }
