@@ -22,6 +22,19 @@ public class SedeBL {
 		return retorno;
 	}
 
+	public Sede traerSede(int idSede) throws Exception {
+		Sede retorno = null;
+		try {
+			retorno = dao.traerSede(idSede);
+		} catch (SQLException e) {
+			throw new SQLException(e);
+		}
+		if (retorno == null) {
+			throw new Exception("error, no se encontró Sede con esa id: "+ idSede);
+		}
+		return retorno;
+	}
+
 	public int agregarSede(int idSede, int idPais, int idProvincia, int idLocalidad, String codigoPostal, String calle,
 			int numero) throws Exception {
 		if (dao.existeSede(calle, numero)) {
