@@ -9,6 +9,7 @@ public class Test {
 		try {
 		bl.agregarSede(1, 1, 1, 1, "1842", "Barbier", 2746);
 		System.out.println(bl.traerSede("Barbier", 2746).toString());
+		System.out.println(bl.traerSede(1).toString());
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
