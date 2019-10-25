@@ -114,6 +114,11 @@ CREATE  TABLE `royalacademy`.`Resolucion` (
   `numero` INT,
   PRIMARY KEY (`idSede`) );
   
+    CREATE  TABLE `royalacademy`.`Curso` (
+  `idCurso` INT NOT NULL AUTO_INCREMENT ,
+  `descripcion` varchar(25),
+  PRIMARY KEY (`idCurso`) );
+  
 insert into pais(pais) values ('No Asignado');
 insert into pais(pais) values ('Argentina');
 insert into provincia(provincia) values ('No Asignado');
@@ -137,3 +142,4 @@ select * from Opcion;
 select * from Resolucion;
 select * from Respuesta;
 select * from Sede;
+select * from Curso;
